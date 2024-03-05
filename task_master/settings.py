@@ -63,6 +63,10 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = env('EMAIL_HOST')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 
+# CSRF
+CSRF_TRUSTED_ORIGINS = [
+    'https://task-master-django-final.onrender.com', 'https://*.127.0.0.1']
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
