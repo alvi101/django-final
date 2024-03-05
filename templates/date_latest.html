@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="container">
+    <h1 class="mt-5">Earliest Tasks</h1>
+        <div class="row">
+            <div class="filter-container col-4">
+                <div class="dropdown my-2">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Projects
+                    </button>
+                    <ul class="dropdown-menu">
+                    {% for project in projects %}
+                      <li><a class="dropdown-item" href="{% url 'filter' project.id %}">{{project}}</a></li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                  
+
+                  <div class="dropdown my-2">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Category
+                    </button>
+                    <ul class="dropdown-menu">
+                    {% for category in categories %}
+                      <li><a class="dropdown-item" href="{% url 'cat_filter' category.id %}">{{category}}</a></li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+
+                  <div class="dropdown my-2">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Due
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="{% url 'filter_earliest' %}">Earliest</a></li>
+                      <li><a class="dropdown-item" href="{% url 'filter_latest' %}">Latest</a></li>
+                    </ul>
+                  </div>
+
+                  <div class="dropdown my-2">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Priority
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="{% url 'priority_high' %}">High to low</a></li>
+                      <li><a class="dropdown-item" href="{% url 'priority_low' %}">Low to high</a></li>
+                    </ul>
+                  </div>
+
+
+                  {% include 'status_filter.html' %}
+
+            {% comment %} left col ending {% endcomment %}
+            </div>
+            <div class="card-container col-8 d-flex gap-3">
+                {% for task in tasks %}
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <div class="task-title d-flex gap-3 text-center">
+                      <h5 class="card-title">{{task.title}}</h5>
+                        <p><b>Due:</b> {{task.due_date}}</p>
+                        </div>
+                      <p class="card-text">{{task.description}}</p>
+                      {% include 'task_buttons.html' %}
+                    </div>
+                  </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

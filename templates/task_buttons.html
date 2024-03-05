@@ -1,0 +1,14 @@
+{% if task.priority %}
+<p>Priority: {{task.priority}}</p>
+{% endif %}
+<div class="d-flex gap-2">
+    {% for cat in task.category.all %}
+    <p class="btn btn-secondary btn-sm">{{cat}}</p>
+    {% endfor %}
+</div>
+
+{% if not task.status %}
+<a href="{% url 'edit_status' task.id %}" class="btn btn-success btn-sm">Complete</a>
+{% endif %}
+<a href="{% url 'edit_task' task.id %}" class="btn btn-warning btn-sm">Edit</a>
+<a href="{% url 'delete_task' task.id %}" class="btn btn-danger btn-sm">Delete</a>

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-6">
+            <img class="w-100" src="{% static 'images/task.jpg' %}" alt="img">
+        </div>
+        <div class="col-6">
+            <h1>The most productive you have ever been</h1>
+            <br>
+            <P>
+                Stay organized effortlessly with Task Master app. Manage tasks efficiently, prioritize seamlessly, and boost productivity with intuitive features.
+                <br>
+                {% if not user.is_authenticated %}
+                <span><a class="btn btn-primary mt-3" href="{% url 'login' %}">Join now!</a></span>
+                {% else %}
+                <span><a class="btn btn-primary mt-3" href="{% url 'add_task' %}">Add task</a></span>
+                {% endif %}
+            </P>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

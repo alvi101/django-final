@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="container mt-5">
+
+  {% comment %} inner row start {% endcomment %}
+  <div class="row">
+
+    {% comment %} left col {% endcomment %}
+    <div class="col-4">
+        <h1>Welcome: {{user.first_name}}</h1>
+
+
+      <div class="dropdown my-2">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Projects
+        </button>
+        <ul class="dropdown-menu">
+        {% for project in projects %}
+          <li><a class="dropdown-item" href="{% url 'filter' project.id %}">{{project}}</a></li>
+        {% endfor %}
+        </ul>
+      </div>
+      
+  
+      <div class="dropdown my-2">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Category
+        </button>
+        <ul class="dropdown-menu">
+        {% for category in categories %}
+          <li><a class="dropdown-item" href="{% url 'cat_filter' category.id %}">{{category}}</a></li>
+        {% endfor %}
+        </ul>
+      </div>
+  
+      <div class="dropdown my-2">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Date
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="{% url 'filter_earliest' %}">Earliest</a></li>
+          <li><a class="dropdown-item" href="{% url 'filter_latest' %}">Latest</a></li>
+        </ul>
+      </div>
+
+
+      <div class="dropdown my-2">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Priority
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="{% url 'priority_high' %}">High to low</a></li>
+          <li><a class="dropdown-item" href="{% url 'priority_low' %}">Low to high</a></li>
+        </ul>
+      </div>
+
+
+      {% include 'status_filter.html' %}
+    {% comment %} left col end {% endcomment %}
+    </div>
+
+
+    {% comment %} right col start {% endcomment %}
+    <div class="col-8 d-flex gap-3 flex-wrap">
+     
+      {% for task in tasks %}
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <div class="d-flex justify-content-around">
+        <h5 class="card-title">{{task.title}}</h5>
+        |
+        <p><b>Due:</b>{{task.due_date}}</p>
+        </div>
+        {%if task.priority %}
+        <p><b>Priority:</b> {{task.priority}}</p>
+        {% endif %}
+        <p class="card-text">{{task.description}}</p>
+        <p>{{task.status}}</p>
+        {% include 'task_buttons.html' %}
+      </div>
+    </div>
+{% endfor %}
+    {% comment %} right col end {% endcomment %}
+    </div>
+
+
+  {% comment %} inner row end {% endcomment %}
+  </div>
+ 
+    
+
+{% comment %} main container end {% endcomment %}
+</div>
+{% endblock content %}
