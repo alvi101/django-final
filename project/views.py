@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import DetailView, CreateView
+from django.views.generic import DetailView, CreateView, UpdateView
 from .models import Project
 from task.models import Category, Task
 from django.urls import reverse_lazy
@@ -20,6 +20,11 @@ class AddProjectView(LoginRequiredMixin, CreateView):
         form.instance.account = self.request.user.account
         form.save()
         return super().form_valid(form)
+    
+
+class EditProjectView(UpdateView):
+    model = Project
+    template_name = 'project/edit_project.html'
 
 
 class FilterProject(LoginRequiredMixin, DetailView):

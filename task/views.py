@@ -77,6 +77,9 @@ def complete_task(request, pk):
     current_task = Task.objects.get(pk=pk)
     current_task.status = True
     current_task.save(update_fields=['status'])
+    title = current_task.title
+    send_account_email(
+            "Congratulatins, completed task", "email/add_task.html", title, request.user.email)
     return redirect('home')
 
 

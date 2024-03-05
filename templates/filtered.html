@@ -54,7 +54,7 @@
             {% comment %} left col ending {% endcomment %}
             </div>
             <div class="card-container col-8 d-flex gap-3">
-                {% for task in projects %}
+                {% for task in project.tasks.all %}
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <div class="task-title d-flex gap-3 text-center">
