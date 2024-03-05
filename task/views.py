@@ -61,6 +61,7 @@ class AddCategoryView(LoginRequiredMixin, CreateView):
     model = Category
     template_name = 'task/add_category.html'
     fields = ['name']
+    success_url = reverse_lazy('home')
 
 
 class EditTaskView(LoginRequiredMixin, UpdateView):
