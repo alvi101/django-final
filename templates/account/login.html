@@ -1,13 +1,31 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
 
-<div class="container">
-    <h1 class="mt-5">Login</h1>
-    <form action="" method="POST">
-        {% csrf_token %}
-        {{form | crispy }}
-        <input class="btn btn-primary" type="submit" value="Login">
-    </form>
+<div class="container mt-5">
+
+    <div class="row align-items-center">
+
+        {% comment %} left side col start {% endcomment %}
+        <div class="col">
+        <img class="img-fluid" src="{% static 'images/login.png' %}" alt="login-img">
+
+        {% comment %} left side col end {% endcomment %}
+        </div>
+
+        {% comment %} right side col start {% endcomment %}
+        <div class="col">
+            <h1>Log Into Your Account</h1>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{form | crispy }}
+                <input class="btn btn-primary" type="submit" value="Login">
+            </form>
+        {% comment %} right side col end {% endcomment %}
+        </div>
+
+    </div>
+   
 </div>
 {% endblock content %}

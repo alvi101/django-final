@@ -1,13 +1,30 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
 
-<div class="container">
-    <h1 class="mt-5">Register</h1>
-    <form action="" method="POST">
-        {% csrf_token %}
-        {{form | crispy }}
-        <input class="btn btn-primary" type="submit" value="Sign Up">
-    </form>
+<div class="container mt-5">
+    <div class="row align-items-center">
+        {% comment %} register left start {% endcomment %}
+        <div class="col">
+            <div class="d-flex justify-content-center">
+                <img class="img-fluid" src="{% static 'images/signup.png' %}" alt="registration-img">
+            </div>
+            {% comment %} register left end {% endcomment %}
+        </div>
+        {% comment %} register right start {% endcomment %}
+        <div class="col">
+            
+       <div class="justify-content-center">
+        <h1>Register A New Account</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{form | crispy }}
+            <input class="btn btn-primary" type="submit" value="Sign Up">
+        </form>
+       </div>
+        {% comment %} register left end {% endcomment %}
+        </div>
+    </div>
 </div>
 {% endblock content %}
