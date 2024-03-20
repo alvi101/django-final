@@ -1,27 +1,113 @@
 {% extends 'base.html' %}
+
 {% load static %}
+
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'styles/index_page.css' %}"/>
+{% endblock style %}
+
 {% block content %}
-<div class="container mt-5">
-    <br>
-    <br>
-    <div class="row">
-        <div class="col-6">
-            <img class="w-100" src="{% static 'images/task.jpg' %}" alt="img">
-        </div>
-        <div class="col-6">
-            <h1>The most productive you have ever been</h1>
-            <br>
-            <P>
-                Stay organized effortlessly with Task Master app. Manage tasks efficiently, prioritize seamlessly, and boost productivity with intuitive features.
-                <br>
-                {% if not user.is_authenticated %}
-                <span><a class="btn btn-primary mt-3" href="{% url 'login' %}">Join now!</a></span>
-                {% else %}
-                <span><a class="btn btn-primary mt-3" href="{% url 'add_task' %}">Add task</a></span>
-                {% endif %}
-            </P>
-        </div>
+<div class="first container mt-5">
+  <br />
+  <br />
+  <div class="row">
+    <div class="col-6">
+      <img class="w-100" src="{% static 'images/task.jpg' %}" alt="img" />
+    </div>
+    <div class="col-6">
+      <h1>The most productive you have ever been</h1>
+      <br />
+      <p>
+        Stay organized effortlessly with Task Master app. Manage tasks
+        efficiently, prioritize seamlessly, and boost productivity with
+        intuitive features.
+        <br />
+        {% if not user.is_authenticated %}
+        <span
+          ><a class="btn btn-primary mt-3" href="{% url 'login' %}"
+            >Join now!</a
+          ></span
+        >
+        {% else %}
+        <span
+          ><a class="btn btn-primary mt-3" href="{% url 'add_task' %}"
+            >Add task</a
+          ></span
+        >
+        {% endif %}
+      </p>
+    </div>
+  </div>
+
+  {% comment %} carousel start {% endcomment %}
+
+  <div class="swiffy-slider slider-nav-round slider-nav-animation slider-nav-animation-fadein slider-item-first-visible mt-5">
+    <ul class="slider-container">
+        <li class="slide-visible">
+            <div class="card rounded-0 h-100">
+                <div class="row g-0 h-100">
+                    <div class="col-md-6 col-xl-5 d-flex align-items-center p-2 p-md-3 p-xl-5">
+                        <div class="card-body p-1 p-md-3 p-xl-5">
+                            <h2 class="card-title" style="color:#DF1E1E;">Organize Task Easily</h2>
+                            <p class="card-text mt-3">Efficiently organize tasks, maximizing productivity while saving valuable time for more important endeavors.
+                            </p>
+                            <p class="card-text"><small class="text-muted">*We are adding new features all the time. Make sure to check us out regularly</small></p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-7">
+                        <img src="{% static 'images/time-management.jpg' %}" class="card-img d-none d-md-block" loading="lazy" style="height: 100%; object-fit: cover;" alt="...">
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="card rounded-0 h-100">
+                <div class="row g-0 h-100">
+                    <div class="col-md-6 col-xl-7">
+                        <img src="{% static 'images/productive.jpg' %}" class="card-img d-none d-md-block" loading="lazy" style="height: 100%; object-fit: cover" alt="...">
+                    </div>
+                    <div class="col-md-6 col-xl-5 d-flex align-items-center p-2 p-md-3 p-xl-5">
+                        <div class="card-body p-1 p-md-3 p-xl-5">
+                            <h2 class="card-title" style="color:#DF1E1E;">Limitless Productivity</h2>
+                            <p class="card-text mt-3">Unleash boundless productivity potential, achieving goals with efficiency and effectiveness through optimized workflows and streamlined task management processes.</p>
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li>
+          <div class="card rounded-0 h-100">
+              <div class="row g-0 h-100">
+                  <div class="col-md-6 col-xl-7">
+                      <img src="{% static 'images/project-management.jpg' %}" class="card-img d-none d-md-block" loading="lazy" style="height: 100%; object-fit: cover" alt="...">
+                  </div>
+                  <div class="col-md-6 col-xl-5 d-flex align-items-center p-2 p-md-3 p-xl-5">
+                      <div class="card-body p-1 p-md-3 p-xl-5">
+                          <h2 class="card-title" style="color:#DF1E1E;">Easy Task and Project Management</h2>
+                          <p class="card-text mt-3">Streamline task and project management effortlessly, fostering productivity and collaboration with intuitive tools for efficient workflow organization and execution.</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </li>
+    </ul>
+
+    <button type="button" class="slider-nav" aria-label="Go left"></button>
+    <button type="button" class="slider-nav slider-nav-next" aria-label="Go left"></button>
+
+    <div class="slider-indicators">
+        <button class="active" aria-label="Go to slide"></button>
+        <button aria-label="Go to slide"></button>
+        <button aria-label="Go to slide"></button>
     </div>
 </div>
 
+
+  {% comment %} carousel end {% endcomment %}
+
+
+  {% comment %} main container end {% endcomment %}
+</div>
 {% endblock content %}

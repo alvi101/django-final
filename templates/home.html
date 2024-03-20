@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
+{% load static %}
 
 {% block content %}
-
 
 <div class="container mt-5">
 
@@ -71,24 +71,19 @@
      </div>
     
      {% else %}
-      {% for task in tasks %}
-    <div class="card" style="width: 18rem;">
+
+
+     {% for task in tasks %}
+     <div class="card" style="width: 18rem;">
       <div class="card-body">
-        <div class="d-flex justify-content-around">
         <h5 class="card-title">{{task.title}}</h5>
-        |
-        <p><b>Due:</b>{{task.due_date}}</p>
-        </div>
-        {%if task.priority %}
-        <p><b>Priority:</b> {{task.priority}}</p>
-        {% endif %}
-        <p class="card-text">{{task.description}}</p>
-        <p>{{task.status}}</p>
+        <p class="card-text">{{task.description | truncatewords:10}}</p>
         {% include 'task_buttons.html' %}
       </div>
     </div>
-{% endfor %}
-{% endif %}
+    {% endfor %}
+
+    {% endif %}
     {% comment %} right col end {% endcomment %}
     </div>
 

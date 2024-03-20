@@ -6,7 +6,7 @@
     <p class="btn btn-secondary btn-sm">{{cat}}</p>
     {% endfor %}
 </div>
-
+    
 {% if not task.status %}
 <a href="{% url 'edit_status' task.id %}" class="btn btn-success btn-sm">Complete</a>
 {% endif %}

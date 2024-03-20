@@ -2,7 +2,6 @@
 
 {% block content %}
 
-
 <div class="container mt-5">
 
   {% comment %} inner row start {% endcomment %}
@@ -66,32 +65,30 @@
     {% comment %} right col start {% endcomment %}
     <div class="col-8 d-flex gap-3 flex-wrap">
      
-      {% for task in tasks %}
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <div class="d-flex justify-content-around">
-        <h5 class="card-title">{{task.title}}</h5>
-        |
-        <p><b>Due:</b>{{task.due_date}}</p>
-        </div>
-        {%if task.priority %}
-        <p><b>Priority:</b> {{task.priority}}</p>
-        {% endif %}
-        <p class="card-text">{{task.description}}</p>
-        <p>{{task.status}}</p>
-        {% include 'task_buttons.html' %}
+      {% if not tasks %}
+      <div class="d-flex flex-column">
+       <h2>No tasks</h2>
+       <a class="btn btn-primary" href="{% url 'add_task' %}">Add?</a>
       </div>
-    </div>
-{% endfor %}
-    {% comment %} right col end {% endcomment %}
-    </div>
-
-
-  {% comment %} inner row end {% endcomment %}
-  </div>
+     
+      {% else %}
  
-    
+ 
+      {% for task in tasks %}
+      <div class="card" style="width: 18rem;">
+       <div class="card-body">
+         <h5 class="card-title">{{task.title}}</h5>
+         <p class="card-text">{{task.description | truncatewords:10}}</p>
+         {% include 'task_buttons.html' %}
+       </div>
+     </div>
+     {% endfor %}
+ 
+     {% endif %}
+     {% comment %} right col end {% endcomment %}
+     </div>
 
 {% comment %} main container end {% endcomment %}
+</div>
 </div>
 {% endblock content %}

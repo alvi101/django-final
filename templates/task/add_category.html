@@ -1,14 +1,25 @@
 {% extends 'base.html' %}
+
+
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'styles/task_styles.css' %}">
+{% endblock style %}
+
+
 {% load crispy_forms_tags %}
 {% block content %}
 
-<div class="container">
-    <h1 class="mt-5">Add Category</h1>
+<div class="vh-100">
+<h1 class="mt-5">Add Category</h1>
+<div class="form-area">
     <form action="" method="POST">
         {% csrf_token %}
         {{form | crispy }}
-        <input class="btn btn-primary" type="submit" value="Add">
+        <input id="sub-btn" class="btn btn-primary" type="submit" value="Add">
     </form>
+</div>
 </div>
 
 {% endblock content %}
